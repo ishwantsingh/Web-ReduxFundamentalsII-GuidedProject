@@ -1,18 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { func } from 'prop-types';
+import { func, number } from 'prop-types';
 import { addQuote } from '../App';
 
-
-function mapStateToProps(state) {
-  // 1- implement so component gets a numberOfQuotes
-  // that maps to state.quotes.length
-}
-
-function mapDispatchToProps(dispatch) {
-  // 2- implement
-}
 
 export class QuoteForm extends React.Component {
   authorRef = React.createRef()
@@ -46,6 +37,20 @@ export class QuoteForm extends React.Component {
 
 QuoteForm.propTypes = {
   addQuote: func.isRequired,
+  numberOfQuotes: number.isRequired,
 };
+
+function mapStateToProps(state) {
+  return {
+    // 1- fix so component gets a numberOfQuotes
+    // that maps to state.quotes.length
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    // 2- fix
+  }, dispatch);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuoteForm);
