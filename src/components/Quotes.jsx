@@ -33,7 +33,7 @@ Quotes.propTypes = {
     author: string.isRequired,
     text: string.isRequired,
   })).isRequired,
-  quoteOfTheDay: string.isRequired,
+  quoteOfTheDay: string,
 };
 
 function mapStateToProps(state) {
