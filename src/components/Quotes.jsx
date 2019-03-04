@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { arrayOf, shape, string } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import Quote from './Quote';
 import { deleteQuote, makeQuoteOfTheDay } from '../App';
@@ -27,6 +28,15 @@ export class Quotes extends React.Component {
     );
   }
 }
+
+Quotes.propTypes = {
+  quotes: arrayOf(shape({
+    id: string.isRequired,
+    author: string.isRequired,
+    text: string.isRequired,
+  })).isRequired,
+  quoteOfTheDay: string,
+};
 
 function mapStateToProps(state) {
   return {
