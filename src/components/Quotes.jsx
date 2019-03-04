@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { shape, string } from 'prop-types';
+import { shape, string, arrayOf } from 'prop-types';
 import Quote from './Quote';
 import { deleteQuote, makeQuoteOfTheDay } from '../App';
 
@@ -28,11 +28,11 @@ export class Quotes extends React.Component {
 }
 
 Quotes.propTypes = {
-  quotes: shape({
+  quotes: arrayOf(shape({
     id: string.isRequired,
     author: string.isRequired,
     text: string.isRequired,
-  }).isRequired,
+  })).isRequired,
   quoteOfTheDay: string.isRequired,
 };
 
