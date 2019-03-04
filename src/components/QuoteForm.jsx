@@ -5,20 +5,23 @@ import { func } from 'prop-types';
 import { addQuote } from '../App';
 
 
+function mapStateToProps(state) {
+  // 1- implement so component gets a numberOfQuotes
+  // that maps to state.quotes.length
+}
+
+function mapDispatchToProps(dispatch) {
+  // 2- implement
+}
+
 export class QuoteForm extends React.Component {
   authorRef = React.createRef()
 
   textRef = React.createRef()
 
   onAddQuote = () => {
-    const authorInput = this.authorRef.current;
-    const textInput = this.textRef.current;
-
-    this.props.addQuote(authorInput.value, textInput.value);
-
-    authorInput.value = '';
-    textInput.value = '';
-    authorInput.focus();
+    // 3- implement so it uses this.props.addQuote
+    // and also clears the inputs
   }
 
   render() {
@@ -42,19 +45,7 @@ export class QuoteForm extends React.Component {
 }
 
 QuoteForm.propTypes = {
-  addQuote: func,
+  addQuote: func.isRequired,
 };
-
-function mapStateToProps(state) {
-  return {
-    numberOfQuotes: state.quotes.length,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({
-    addQuote,
-  }, dispatch);
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuoteForm);

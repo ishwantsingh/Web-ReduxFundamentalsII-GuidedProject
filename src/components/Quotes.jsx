@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { shape, string } from 'prop-types';
 import Quote from './Quote';
 import { deleteQuote, makeQuoteOfTheDay } from '../App';
 
@@ -12,13 +13,11 @@ export class Quotes extends React.Component {
         <h3>My Favorite Quotes</h3>
         <div>
           {
+            // is <Quote /> getting everything it needs?
             this.props.quotes.map(quote => (
               <Quote
                 key={quote.id}
                 quote={quote}
-                deleteQuote={this.props.deleteQuote}
-                makeQuoteOfTheDay={this.props.makeQuoteOfTheDay}
-                isQuoteOfTheDay={this.props.quoteOfTheDay === quote.id}
               />
             ))
           }
@@ -27,6 +26,15 @@ export class Quotes extends React.Component {
     );
   }
 }
+
+Quotes.propTypes = {
+  quotes: shape({
+    id: string.isRequired,
+    author: string.isRequired,
+    text: string.isRequired,
+  }).isRequired,
+  quoteOfTheDay: string.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
