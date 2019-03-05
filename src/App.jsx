@@ -37,7 +37,7 @@ function quoteOfTheDay(state = null, action) {
 
 // =================================================================== COMBINE REDUCERS
 // 3- use combineReducers to create a root reducer off of our reducers
-const rootReducer = () => ({ quotes: dummyQuotes, quoteOfTheDay: null });
+const rootReducer = combineReducers({ quotes, quoteOfTheDay });
 
 // =================================================================== ACTION CREATORS  (pull out)
 // 4- ACTION CREATOR deleteQuote
