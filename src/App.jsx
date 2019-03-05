@@ -5,19 +5,16 @@ import { Provider } from 'react-redux';
 import uuid from 'uuid';
 import Container from './components/Container';
 import dummyQuotes from './constants/dummyQuotes';
-
-// =================================================================== ACTION TYPES (pull out)
-export const DELETE_QUOTE = 'DELETE_QUOTE';
-export const MAKE_QUOTE_OF_THE_DAY = 'MAKE_QUOTE_OF_THE_DAY';
-export const ADD_QUOTE = 'ADD_QUOTE';
+import * as types from './constants/actionTypes';
 
 // =================================================================== REDUCERS  (pull out)
 // REDUCER quotes
 function quotes(state = dummyQuotes, action) {
+  // 1- flesh out using action types as your guide
   switch (action.type) {
-    case ADD_QUOTE:
+    case types.ADD_QUOTE:
       return state.concat(action.payload);
-    case DELETE_QUOTE:
+    case types.DELETE_QUOTE:
       return state.filter(quote => quote.id !== action.payload);
     default:
       return state;
@@ -27,7 +24,7 @@ function quotes(state = dummyQuotes, action) {
 // REDUCER quoteOfTheDay
 function quoteOfTheDay(state = null, action) {
   switch (action.type) {
-    case MAKE_QUOTE_OF_THE_DAY:
+    case types.MAKE_QUOTE_OF_THE_DAY:
       return action.payload;
     default:
       return state;
@@ -42,7 +39,7 @@ const rootReducer = combineReducers({ quotes, quoteOfTheDay });
 // 4- ACTION CREATOR deleteQuote
 export function deleteQuote(id) {
   return {
-    type: DELETE_QUOTE,
+    type: types.DELETE_QUOTE,
     payload: id,
   };
 }
@@ -50,7 +47,7 @@ export function deleteQuote(id) {
 // 5- ACTION CREATOR makeQuoteOfTheDay
 export function makeQuoteOfTheDay(id) {
   return {
-    type: MAKE_QUOTE_OF_THE_DAY,
+    type: types.MAKE_QUOTE_OF_THE_DAY,
     payload: id,
   };
 }
@@ -58,7 +55,7 @@ export function makeQuoteOfTheDay(id) {
 // 6- ACTION CREATOR addQuote
 export function addQuote(author, text) {
   return {
-    type: ADD_QUOTE,
+    type: types.ADD_QUOTE,
     payload: {
       id: uuid(),
       author,

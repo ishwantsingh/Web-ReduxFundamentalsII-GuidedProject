@@ -8,15 +8,13 @@ import { deleteQuote, makeQuoteOfTheDay } from '../App';
 
 export class Quotes extends React.Component {
   render() {
-    const quotes = this.props.quotes || [];
-
     return (
       <div>
         <h3>My Favorite Quotes</h3>
         <div>
           {
             // is <Quote /> getting everything it needs?
-            quotes.map(quote => (
+            this.props.quotes.map(quote => (
               <Quote
                 key={quote.id}
                 quote={quote}
@@ -44,13 +42,15 @@ Quotes.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // there are 2 keys missing here!
-    // look at the propTypes for hints
+    quotes: state.quotes,
+    quoteOfTheDay: state.quoteOfTheDay,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    deleteQuote,
+    makeQuoteOfTheDay,
     // there are 2 keys missing here!
     // look at the propTypes for hints
     // (or imports at the top)
