@@ -15,7 +15,14 @@ export const ADD_QUOTE = 'ADD_QUOTE';
 // REDUCER quotes
 function quotes(state = dummyQuotes, action) {
   // 1- flesh out using action types as your guide
-  return state;
+  switch (action.type) {
+    case ADD_QUOTE:
+      // I am getting an action.payload containing a  new quote!
+      // what should I return?
+      return state.concat(action.payload);
+    default:
+      return state;
+  }
 }
 
 // REDUCER quoteOfTheDay
