@@ -27,8 +27,12 @@ function quotes(state = dummyQuotes, action) {
 
 // REDUCER quoteOfTheDay
 function quoteOfTheDay(state = null, action) {
-  // 2- flesh out using action types as your guide
-  return state;
+  switch (action.type) {
+    case MAKE_QUOTE_OF_THE_DAY:
+      return action.payload;
+    default:
+      return state;
+  }
 }
 
 // =================================================================== COMBINE REDUCERS
@@ -47,8 +51,8 @@ export function deleteQuote(id) {
 // 5- ACTION CREATOR makeQuoteOfTheDay
 export function makeQuoteOfTheDay(id) {
   return {
-    // what type?
-    // what payload?
+    type: MAKE_QUOTE_OF_THE_DAY,
+    payload: id,
   };
 }
 
