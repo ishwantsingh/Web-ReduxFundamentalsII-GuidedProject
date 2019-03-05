@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { shape, string, arrayOf, func } from 'prop-types';
 import Quote from './Quote';
-import { deleteQuote, makeQuoteOfTheDay } from '../App';
+import { deleteQuote, makeQuoteOfTheDay } from '../state/actionCreators';
 
 
 export class Quotes extends React.Component {
@@ -18,6 +18,9 @@ export class Quotes extends React.Component {
               <Quote
                 key={quote.id}
                 quote={quote}
+                makeQuoteOfTheDay={this.props.makeQuoteOfTheDay}
+                deleteQuote={this.props.deleteQuote}
+                isQuoteOfTheDay={quote.id === this.props.quoteOfTheDay}
               />
             ))
           }
