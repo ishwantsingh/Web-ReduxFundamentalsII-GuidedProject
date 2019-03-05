@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import uuid from 'uuid';
 import Container from './components/Container';
 import dummyQuotes from './constants/dummyQuotes';
 import * as types from './constants/actionTypes';
+
 
 // =================================================================== REDUCERS  (pull out)
 // REDUCER quotes
@@ -34,35 +34,6 @@ function quoteOfTheDay(state = null, action) {
 // =================================================================== COMBINE REDUCERS
 // 3- use combineReducers to create a root reducer off of our reducers
 const rootReducer = combineReducers({ quotes, quoteOfTheDay });
-
-// =================================================================== ACTION CREATORS  (pull out)
-// 4- ACTION CREATOR deleteQuote
-export function deleteQuote(id) {
-  return {
-    type: types.DELETE_QUOTE,
-    payload: id,
-  };
-}
-
-// 5- ACTION CREATOR makeQuoteOfTheDay
-export function makeQuoteOfTheDay(id) {
-  return {
-    type: types.MAKE_QUOTE_OF_THE_DAY,
-    payload: id,
-  };
-}
-
-// 6- ACTION CREATOR addQuote
-export function addQuote(author, text) {
-  return {
-    type: types.ADD_QUOTE,
-    payload: {
-      id: uuid(),
-      author,
-      text,
-    },
-  };
-}
 
 // =================================================================== CREATE THE STORE
 const store = createStore(
