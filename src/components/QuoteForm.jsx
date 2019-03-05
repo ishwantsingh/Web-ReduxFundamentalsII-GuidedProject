@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { func, number } from 'prop-types';
-import { addQuote } from '../App';
+import { addQuote } from '../state/actionCreators';
 
 
 export class QuoteForm extends React.Component {
@@ -11,8 +11,15 @@ export class QuoteForm extends React.Component {
   textRef = React.createRef()
 
   onAddQuote = () => {
+    const authorValue = this.authorRef.current.value;
+    const textValue = this.textRef.current.value;
     // 3- implement so it uses this.props.addQuote
     // and also clears the inputs
+
+    this.props.addQuote(authorValue, textValue);
+    this.authorRef.current.value = '';
+    this.textRef.current.value = '';
+    this.authorRef.current.focus();
   }
 
   render() {
@@ -42,14 +49,13 @@ QuoteForm.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    // 1- fix so component gets a numberOfQuotes
-    // that maps to state.quotes.length
+    numberOfQuotes: state.quotes.length,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    // 2- fix
+    addQuote,
   }, dispatch);
 }
 
