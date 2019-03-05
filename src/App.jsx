@@ -26,6 +26,8 @@ function quoteOfTheDay(state = null, action) {
   switch (action.type) {
     case types.MAKE_QUOTE_OF_THE_DAY:
       return action.payload;
+    case types.DELETE_QUOTE:
+      return state === action.payload ? null : state;
     default:
       return state;
   }
