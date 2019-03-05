@@ -17,9 +17,9 @@ function quotes(state = dummyQuotes, action) {
   // 1- flesh out using action types as your guide
   switch (action.type) {
     case ADD_QUOTE:
-      // I am getting an action.payload containing a  new quote!
-      // what should I return?
       return state.concat(action.payload);
+    case DELETE_QUOTE:
+      return state.filter(quote => quote.id !== action.payload);
     default:
       return state;
   }
@@ -39,8 +39,8 @@ const rootReducer = () => ({ quotes: dummyQuotes, quoteOfTheDay: null });
 // 4- ACTION CREATOR deleteQuote
 export function deleteQuote(id) {
   return {
-    // what type?
-    // what payload?
+    type: DELETE_QUOTE,
+    payload: id,
   };
 }
 
