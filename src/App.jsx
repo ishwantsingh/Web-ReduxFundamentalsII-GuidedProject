@@ -48,8 +48,12 @@ export function makeQuoteOfTheDay(id) {
 // 6- ACTION CREATOR addQuote
 export function addQuote(author, text) {
   return {
-    // what type?
-    // what payload?
+    type: ADD_QUOTE,
+    payload: {
+      id: uuid(),
+      author,
+      text,
+    },
   };
 }
 
